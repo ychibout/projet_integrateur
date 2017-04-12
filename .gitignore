@@ -1,0 +1,7 @@
+/Build_Projet/Library
+/Build_Projet/*.csproj
+/Build_Projet/*.sln*
+/Build_Projet/*.userprefs
+/Build_Projet/*.meta
+/Build_Projet/Model3D
+
