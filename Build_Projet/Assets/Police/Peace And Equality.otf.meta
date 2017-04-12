@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: f83baa5c77f78994494ecb38e1d2c234
+timeCreated: 1487685231
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Peace And Equality
+  fontNames:
+  - Peace And Equality
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
