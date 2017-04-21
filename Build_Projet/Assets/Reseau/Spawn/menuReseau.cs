@@ -8,17 +8,17 @@ public class menuReseau : NetworkBehaviour {
 	public NetworkManager nm;
 	public GameObject t;
 
-	public GameObject Speed;
-	public GameObject Tank;
 
 	private List<GameObject> prefabs;
-
+	private Information player;
 
 	bool connecte = false;
 
 	void Start() {
 		nm = GetComponent<NetworkManager> ();
 		prefabs = nm.spawnPrefabs;
+		player = GameObject.FindGameObjectWithTag ("Information").GetComponent<Information> ();
+		ChangementVaisseau();
 	}
 
 	// Update is called once per frame
@@ -32,12 +32,6 @@ public class menuReseau : NetworkBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.R)) {	//Lance un client rouge
 				GameObject.FindGameObjectWithTag("equipe").GetComponent<team_choice>().team_v = 2;
-
-				/*if (player.NomVaisseau.Equals ("Speed")) {
-					nm.playerPrefab = prefabs.
-				}
-				else
-					nm.playerPrefab = prefabs.Find(Tank);*/
 				
 				nm.StartClient();
 				connecte = true;
@@ -63,5 +57,23 @@ public class menuReseau : NetworkBehaviour {
 			GUI.Label(new Rect(2, 30, 150, 100), "Press B for client bleu");
 			GUI.Label(new Rect(2, 50, 150, 100), "Press R for client rouge");
 		}
+	}
+
+	void ChangementVaisseau()
+	{
+		if (player.model.Equals ("Speed")) {
+			nm.playerPrefab = prefabs [0];
+			Debug.Log ("Speed");
+			return;
+		} else if (player.model.Equals ("Tank")) {
+			nm.playerPrefab = prefabs [1];
+			Debug.Log ("Tank");
+			return;
+		} else if (player.model.Equals ("Damage")) {
+			nm.playerPrefab = prefabs [2];
+			Debug.Log ("damage");
+			return;
+		}
+		Debug.Log ("ici?");
 	}
 }
