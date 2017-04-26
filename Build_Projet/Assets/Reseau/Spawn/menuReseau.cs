@@ -32,7 +32,10 @@ public class menuReseau : NetworkBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.R)) {	//Lance un client rouge
 				GameObject.FindGameObjectWithTag("equipe").GetComponent<team_choice>().team_v = 2;
-				
+
+				GameObject objtmp = nm.playerPrefab;
+				objtmp.tag = "Equipe2";
+
 				nm.StartClient();
 				connecte = true;
 				Debug.Log ("LanceR");
@@ -41,7 +44,9 @@ public class menuReseau : NetworkBehaviour {
 			if (Input.GetKeyDown (KeyCode.B)) {	//Lance un client bleu
 				GameObject.FindGameObjectWithTag("equipe").GetComponent<team_choice>().team_v = 1;
 
-				
+				GameObject objtmp = nm.playerPrefab;
+				objtmp.tag = "Equipe1";
+
 				nm.StartClient();
 				connecte = true;
 				Debug.Log ("LanceB");
