@@ -35,6 +35,8 @@ public class menuReseau : NetworkBehaviour {
 
 				GameObject objtmp = nm.playerPrefab;
 				objtmp.tag = "Equipe2";
+				Transform objtmpChild = objtmp.transform.GetChild (0);
+				objtmpChild.tag = "Equipe2";
 
 				nm.StartClient();
 				connecte = true;
@@ -46,6 +48,8 @@ public class menuReseau : NetworkBehaviour {
 
 				GameObject objtmp = nm.playerPrefab;
 				objtmp.tag = "Equipe1";
+				Transform objtmpChild = objtmp.transform.GetChild (0);
+				objtmpChild.tag = "Equipe1";
 
 				nm.StartClient();
 				connecte = true;
