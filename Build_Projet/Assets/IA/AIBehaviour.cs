@@ -95,7 +95,6 @@ public class AIBehaviour : NetworkBehaviour {
 		CanShootLaserSalveTimer = 0;
 		DirectionErrorAI = 2.0f;
 
-
 		// Initializing attack damages, intiative and life
 		AttackInitiative = Random.Range (1, 100);
 		AdditionalDamage = Random.Range (0.0f, 2.0f);
@@ -405,19 +404,34 @@ public class AIBehaviour : NetworkBehaviour {
 		// Verify if we are not running away or already fighting with someone
 		if ((_Prey == null) && (CurrentState != AIState.RunningAway)) 
 		{
-			if (prey.GetComponent<AIBehaviour> () != null) {
+			// Verify if the enemy is a human player or an IA
+			if (prey.GetComponent<AIBehaviour> () != null) // If the enemy is an AI
+			{
 				// Verify the attack initiative of the enemy and compare it with our. If current AI has a greater one, it'll attack
-				if (prey.GetComponent<AIBehaviour> ().GetInitiative () < AttackInitiative) {
+				if (prey.GetComponent<AIBehaviour> ().GetInitiative () < AttackInitiative) 
+				{
 					_Prey = prey;
 					ChangeStateLowFight ();
 				} 
 				// If the current AI has a smaller one (or an equal one to simplify interactions), it'll flee
-				else {
+				else 
+				{
 					IamYourDoom (prey);
 				}
-			} else {
-				IamYourDoom (prey);
+			} 
+			else // If the enemy is a human player
+			{
+				if (RollTheDice (65)) // 65% chance to chase player
+				{ 
+					_Prey = prey;
+					ChangeStateLowFight ();
+				} 
+				else 
+				{
+					IamYourDoom (prey);
+				}
 			}
+
 		}
 	}
 
