@@ -5,8 +5,12 @@ using UnityEngine.Networking;
 
 public class PlayerInput : NetworkBehaviour {
 
-	private PlayerReseau changement;
+	private PlayerReseau Action;
 	public GameObject playerCamera;
+
+	// Weaponery prefab
+	public GameObject _LaserPrefab;		   	// Laser prefab
+	public GameObject _MissilePrefab; 		// Missile prefab
 
 	//Variable de speed
 	public float Speed;
@@ -37,7 +41,7 @@ public class PlayerInput : NetworkBehaviour {
 		
 		isLooping = false;
 		isLoopingH = false;
-		changement = transform.GetComponent<PlayerReseau> ();
+		Action = transform.GetComponent<PlayerReseau> ();
 
 	}
 	
@@ -61,6 +65,18 @@ public class PlayerInput : NetworkBehaviour {
 			//camera.SendMessage("setStraightFollow", true);
 		}
 
+		// Action : shoot laser
+		if (Input.GetKeyDown ("mouse 0") && isLoopingH == false && isLooping == false) 
+		{
+			Action.CmdUseWeaponery (_LaserPrefab, Speed);
+		}
+
+		// Action : shoot missile
+		if (Input.GetKeyDown ("mouse 1") && isLoopingH == false && isLooping == false) 
+		{
+			Action.CmdUseWeaponery (_MissilePrefab, Speed);
+		}
+
 		if (!isLooping && !isLoopingH)
 		{
 			//Recupere la postion de la souris 
@@ -74,7 +90,7 @@ public class PlayerInput : NetworkBehaviour {
 		translate = Vector3.forward * Time.deltaTime * Speed;
 
 		//Envoie de la nouvelle pos au serveur et client -> fait l'echange 
-		changement.CmdUpdatePosition(translate,rotate);
+		Action.CmdUpdatePosition(translate,rotate);
 	}
 }
 
@@ -83,5 +99,5 @@ public class PlayerInput : NetworkBehaviour {
 /*
 var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
 var z = Input.GetAxis ("Vertical") * Time.deltaTime * 3.0f;
-changement.CmdUpdatePosition (z, x);
+Action.CmdUpdatePosition (z, x);
 */
