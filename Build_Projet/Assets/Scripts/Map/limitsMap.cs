@@ -33,7 +33,7 @@ public class limitsMap : MonoBehaviour {
 	public GameObject messOut; // message pour dire au joueur de faire demi tour
 	public int playerOut = 0; // verifier si le joueur est dehors
 	public Transform target; // cible vers laquelle la fleche regarde
-	GameObject arrow;
+	GameObject arrow; // fleche
 
 	/*********************************************************************
 	************************* START & UPDATE *****************************
@@ -41,7 +41,6 @@ public class limitsMap : MonoBehaviour {
 
 	void Start () {
 		messOut.SetActive (false);
-
 	}
 
 	void Update(){
@@ -56,9 +55,13 @@ public class limitsMap : MonoBehaviour {
 
 	// Lorsque le joueur sort de la map
 	private void OnTriggerExit(Collider collision){
+
+		// on exlut les IA
 		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model") {
 			// On verifie qu'il s'agit du joueur
 			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
+
+				// recupere fleche
 				GameObject coll = GameObject.Find (collision.name);
 				arrow = coll.transform.Find ("Arrow").gameObject;
 				messOut.SetActive (true); // affiche message
@@ -72,8 +75,12 @@ public class limitsMap : MonoBehaviour {
 
 	// Lorsque le joueur revient dans la map
 	private void OnTriggerEnter(Collider collision){
+
+		// exlusion IA
 		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model") {
+			// verifie si joueur
 			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
+				// recupere fleche
 				GameObject coll = GameObject.Find (collision.name);
 				arrow = coll.transform.Find ("Arrow").gameObject;
 				messOut.SetActive (false);
@@ -83,10 +90,10 @@ public class limitsMap : MonoBehaviour {
 		}
 	}
 
-	// Recharge la scene au bout de 5 secondes
+	// Recharge la scene au bout de 7 secondes
 	private IEnumerator outOfMap(){
 		// attend 5 secondes
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(7);
 
 		// si le joueur est toujours dehors
 		if(playerOut == -1){
