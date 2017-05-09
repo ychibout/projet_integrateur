@@ -13,6 +13,9 @@ public class PlayerInput : NetworkBehaviour {
 	public float SpeedMax;
 	public float SpeedMin;
 
+	// si bonus en cours
+	public bool bonus=false;
+
 	public float tempsLooping = 0.1f;
 	public GameObject camera;
 	protected Vector3 posCamera;
