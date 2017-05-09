@@ -22,6 +22,9 @@ public class MenuPause : MonoBehaviour {
 			if (GUI.Button (new Rect (Screen.width / 2 - 30, Screen.height / 2 - 20, 80, 40), "Continuer")) {
 				isPaused = false;
 			}
+		/*	if (GUI.Button (new Rect (Screen.width / 2 - 30, Screen.height / 2 - 20, 80, 40), "(Un)mute")) {
+				AudioListener.pause = !AudioListener.pause;
+			}*/
 			if (GUI.Button (new Rect (Screen.width / 2 - 30, Screen.height / 2 + 40, 80, 40), "Quitter")) {
 				Application.Quit ();
 			}
