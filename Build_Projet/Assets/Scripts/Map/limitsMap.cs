@@ -32,9 +32,8 @@ public class limitsMap : MonoBehaviour {
 
 	public GameObject messOut; // message pour dire au joueur de faire demi tour
 	public int playerOut = 0; // verifier si le joueur est dehors
-	public GameObject arrow; // fleche indique direction pour retourner dans la map
 	public Transform target; // cible vers laquelle la fleche regarde
-
+	GameObject arrow;
 
 	/*********************************************************************
 	************************* START & UPDATE *****************************
@@ -42,12 +41,12 @@ public class limitsMap : MonoBehaviour {
 
 	void Start () {
 		messOut.SetActive (false);
-		arrow.SetActive (false);
 
 	}
 
 	void Update(){
-		arrow.transform.LookAt (target); // on dirige fleche vers centre de la map
+		if(arrow != null)
+			arrow.transform.LookAt (target); // on dirige fleche vers centre de la map
 	}
 
 
@@ -57,24 +56,30 @@ public class limitsMap : MonoBehaviour {
 
 	// Lorsque le joueur sort de la map
 	private void OnTriggerExit(Collider collision){
-
-		// On verifie qu'il s'agit du joueur
-		if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
-			
-			messOut.SetActive (true); // affiche message
-			arrow.SetActive(true); // affiche flèche
-			// routine pour afficher message quitte partie au bout de 5 sec
-			StartCoroutine(outOfMap()); 
-			playerOut = -1;
+		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model") {
+			// On verifie qu'il s'agit du joueur
+			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
+				GameObject coll = GameObject.Find (collision.name);
+				arrow = coll.transform.Find ("Arrow").gameObject;
+				messOut.SetActive (true); // affiche message
+				arrow.SetActive (true); // affiche flèche
+				// routine pour afficher message quitte partie au bout de 5 sec
+				StartCoroutine (outOfMap ()); 
+				playerOut = -1;
+			}
 		}
 	}
 
 	// Lorsque le joueur revient dans la map
 	private void OnTriggerEnter(Collider collision){
-		if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
-			messOut.SetActive (false);
-			arrow.SetActive (false);
-			playerOut = 0;
+		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model") {
+			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
+				GameObject coll = GameObject.Find (collision.name);
+				arrow = coll.transform.Find ("Arrow").gameObject;
+				messOut.SetActive (false);
+				arrow.SetActive (false);
+				playerOut = 0;
+			}
 		}
 	}
 
@@ -89,4 +94,5 @@ public class limitsMap : MonoBehaviour {
 			Application.LoadLevel("ChoixEquipe");
 		}
 	}
+
 }
