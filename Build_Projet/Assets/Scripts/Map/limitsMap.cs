@@ -93,7 +93,12 @@ public class limitsMap : MonoBehaviour {
 	// Recharge la scene au bout de 7 secondes
 	private IEnumerator outOfMap(){
 		// attend 5 secondes
-		yield return new WaitForSeconds(7);
+		for (int i = 5; i >= 0; i--) {
+			messOut.transform.GetChild (1).GetComponent<Text> ().text = "00:0"+i;
+			yield return new WaitForSeconds (1);
+			if (playerOut == 0)
+				i = -1;
+		}
 
 		// si le joueur est toujours dehors
 		if(playerOut == -1){
