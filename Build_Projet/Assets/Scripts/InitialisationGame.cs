@@ -28,7 +28,7 @@ using UnityEngine;
 
 
 public class InitialisationGame : MonoBehaviour {
-
+	/*
 	private Information player;
 	private int team;
 	private GameObject MainCamera;
@@ -93,5 +93,5 @@ public class InitialisationGame : MonoBehaviour {
 			// Couleur de l'outline en bleu
 			// joueur.transform.GetChild (1).gameObject.GetComponent<TextMesh> ().color = Color.blue;
 		}
-	}
+	}*/
 }

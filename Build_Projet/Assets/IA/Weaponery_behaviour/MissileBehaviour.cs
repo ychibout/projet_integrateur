@@ -28,15 +28,7 @@ public class MissileBehaviour : NetworkBehaviour {
 	{
 		if (LifeTime > 0.0f) 
 		{
-			if (Target != null) 
-			{
-				Move (Target.transform.position);
-			} 
-			else 
-			{
-				Move (transform.forward);
-			}
-
+			Move (Target.transform.position);
 			LifeTime = LifeTime - 0.1f * Time.deltaTime;
 		} 
 		else 
