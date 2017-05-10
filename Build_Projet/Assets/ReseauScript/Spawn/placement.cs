@@ -38,14 +38,16 @@ public class placement : NetworkBehaviour {
 		if (team == 1) {
 			transform.Rotate(0,90,0);
 			GetComponent<Transform> ().position = spawnPointsBlue[Random.Range (0, spawnPointsBlue.Length)].transform.position;
+			transform.tag = "Equipe1";
+			transform.GetChild(0).tag = "Equipe1";
 		}
 
 		if (team == 2) {
 			transform.Rotate(0,-90,0);
 			GetComponent<Transform> ().position = spawnPointsRed[Random.Range (0, spawnPointsRed.Length)].transform.position;
-
+			transform.tag = "Equipe2";
+			transform.GetChild(0).tag = "Equipe2";
 		}
-
 		Rpcclientremplacement (team);
 	}
 
@@ -56,11 +58,15 @@ public class placement : NetworkBehaviour {
 		if (team == 1) {
 			transform.Rotate(0,90,0);
 			GetComponent<Transform> ().position = spawnPointsBlue[Random.Range (0, spawnPointsBlue.Length)].transform.position;
+			transform.tag = "Equipe1";
+			transform.GetChild(0).tag = "Equipe1";
 		}
 
 		if (team == 2) {
 			transform.Rotate(0,-90,0);
 			GetComponent<Transform> ().position = spawnPointsRed[Random.Range (0, spawnPointsRed.Length)].transform.position;
+			transform.tag = "Equipe2";
+			transform.GetChild(0).tag = "Equipe2";
 		}
 	}
 }

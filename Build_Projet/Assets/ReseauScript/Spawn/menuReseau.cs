@@ -35,9 +35,9 @@ public class menuReseau : NetworkBehaviour {
 
 				// tag
 				GameObject objtmp = nm.playerPrefab;
-				objtmp.tag = "Equipe2";
+				//objtmp.tag = "Equipe2";
 				Transform objtmpChild = objtmp.transform.GetChild (0);
-				objtmpChild.tag = "Equipe2";
+				//objtmpChild.tag = "Equipe2";
 
 				Transform nomJoueurtmp = objtmpChild.transform.GetChild (4);
 				Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
@@ -54,9 +54,9 @@ public class menuReseau : NetworkBehaviour {
 
 				// tag
 				GameObject objtmp = nm.playerPrefab;
-				objtmp.tag = "Equipe1";
+				//objtmp.tag = "Equipe1";
 				Transform objtmpChild = objtmp.transform.GetChild (0);
-				objtmpChild.tag = "Equipe1";
+				//objtmpChild.tag = "Equipe1";
 
 				Transform nomJoueurtmp = objtmpChild.transform.GetChild (4);
 				Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
