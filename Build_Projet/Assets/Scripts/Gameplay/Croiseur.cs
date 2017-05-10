@@ -32,12 +32,6 @@ public class Croiseur : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Fonction de test *à enlever par la suite*
-		// Destruction du croiseur utilisant ce script au bout d'un certain temps
-		if (CountDownTest <= 0.0f)
-			gameObject.GetComponent<Croiseur> ().TakeDamage (20.0f);
-		else
-			CountDownTest -= 0.1f * Time.deltaTime;
 	}
 
 	// Fonction TakeDamage
@@ -46,7 +40,7 @@ public class Croiseur : NetworkBehaviour {
 			return;
 		life -= damage;
 		if (life <= 0.0f) {
-			RpcOnDestroyed();
+			RpcOnDestroyed(transform.name);
 		} else {
 
 		}
@@ -56,19 +50,34 @@ public class Croiseur : NetworkBehaviour {
 	// Fonction affichant le message de victoire ou de défaite en fonction du joueur
 	// Pour modifier le texte du canvas, on prend son premier enfant (panel) puis l'enfant de celui-ci (text)
 	[ClientRpc]
-	public void RpcOnDestroyed() {
+	public void RpcOnDestroyed(string croiseur) {
 		// Recherche du vaisseau du joueur
-		player = GameObject.Find ("Player");
+		player = GameObject.FindGameObjectWithTag("Information");
 		// Arret jeu
 		Time.timeScale = 0.0f;
 		// Affichage
 		end_panel.SetActive(true);
-		if(player.tag != gameObject.tag) {
-			end_panel.SetActive (true);
-			end_panel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "YOU WIN!";
-		} else {
-			end_panel.SetActive (true);
-			end_panel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "YOU LOSE!";
+		Debug.Log (croiseur);
+		if(croiseur.Equals("croiseurBlue")){
+			Debug.Log ("coucou");
+			if(player.GetComponent<Information>().team == 1){
+				end_panel.SetActive (true);
+				end_panel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "YOU LOSE!";
+			}
+			else{
+				end_panel.SetActive (true);
+				end_panel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "YOU WIN!";
+			}
+		} 
+		else {
+			if(player.GetComponent<Information>().team == 1){
+					end_panel.SetActive (true);
+					end_panel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "YOU WIN!";
+				}
+			else{
+					end_panel.SetActive (true);
+					end_panel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "YOU LOSE!";
+			}
 		}
 	}
 }
