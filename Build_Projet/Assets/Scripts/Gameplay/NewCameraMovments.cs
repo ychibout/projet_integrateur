@@ -28,7 +28,7 @@ public class NewCameraMovments : MonoBehaviour {
 	void Start () {
 
         //Recherche de joueur 
-        _player = transform.parent.gameObject;//GameObject.FindGameObjectWithTag ("Player");
+        _player = transform.parent.parent.gameObject;//GameObject.FindGameObjectWithTag ("Player");
 		_transformplayer = _player.transform;
         suivreJoueur = true;
         straightFollow = false;
@@ -40,7 +40,7 @@ public class NewCameraMovments : MonoBehaviour {
 	// Update is called once per frame
 	//Effectue une ligne entre la position de la souris et le centre de la camera 
 	void Update () {
-		viewligne = Camera.main.ScreenPointToRay (SourisPos);
+		//viewligne = Camera.main.ScreenPointToRay (SourisPos);
 	}
 
 	void LateUpdate(){
@@ -50,8 +50,6 @@ public class NewCameraMovments : MonoBehaviour {
             FollowStraight();
         if(suivreJoueur && !straightFollow)
             SmoothFollow();
-        print("tmpTransform :"+tmpTransform.position);
-        print("transform"+transform.position);
         transform.position=tmpTransform.position;
         transform.rotation = tmpTransform.rotation;
 	}

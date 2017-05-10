@@ -54,7 +54,7 @@ public class PlayerInput : NetworkBehaviour {
 		} 
 
 
-		if (Input.GetKeyDown ("space") && isLooping == false && isLoopingH == false) {
+		/*if (Input.GetKeyDown ("space") && isLooping == false && isLoopingH == false) {
 			isLooping = true;
 			//camera.SendMessage("setSuivre", false);
 		}
@@ -63,17 +63,19 @@ public class PlayerInput : NetworkBehaviour {
 		{
 			isLoopingH = true;
 			//camera.SendMessage("setStraightFollow", true);
-		}
+		}*/
 
 		// Action : shoot laser
 		if (Input.GetKeyDown ("mouse 0") && isLoopingH == false && isLooping == false) 
 		{
+			Debug.Log ("ici1");
 			Action.CmdUseWeaponery (_LaserPrefab, Speed);
 		}
 
 		// Action : shoot missile
 		if (Input.GetKeyDown ("mouse 1") && isLoopingH == false && isLooping == false) 
 		{
+			Debug.Log ("ici2");
 			Action.CmdUseWeaponery (_MissilePrefab, Speed);
 		}
 
@@ -93,11 +95,3 @@ public class PlayerInput : NetworkBehaviour {
 		Action.CmdUpdatePosition(translate,rotate);
 	}
 }
-
-
-/*Pour test*/
-/*
-var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-var z = Input.GetAxis ("Vertical") * Time.deltaTime * 3.0f;
-Action.CmdUpdatePosition (z, x);
-*/
