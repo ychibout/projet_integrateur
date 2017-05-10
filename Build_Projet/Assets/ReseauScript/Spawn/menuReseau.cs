@@ -38,11 +38,11 @@ public class menuReseau : NetworkBehaviour {
 				//objtmp.tag = "Equipe2";
 				Transform objtmpChild = objtmp.transform.GetChild (0);
 				//objtmpChild.tag = "Equipe2";
-
+				/*
 				Transform nomJoueurtmp = objtmpChild.transform.GetChild (4);
 				Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 				nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.red;
-
+*/
 
 				nm.StartClient();
 				connecte = true;
@@ -57,11 +57,11 @@ public class menuReseau : NetworkBehaviour {
 				//objtmp.tag = "Equipe1";
 				Transform objtmpChild = objtmp.transform.GetChild (0);
 				//objtmpChild.tag = "Equipe1";
-
+				/*
 				Transform nomJoueurtmp = objtmpChild.transform.GetChild (4);
 				Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 				nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.blue;
-
+*/
 
 				nm.StartClient();
 				connecte = true;

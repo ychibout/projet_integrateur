@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class PlayerInput : NetworkBehaviour {
@@ -98,7 +99,7 @@ public class PlayerInput : NetworkBehaviour {
 		Action.CmdUpdatePosition(translate,rotate);
 	}
 
-	bool estLocalPlayer(){
+	public bool estLocalPlayer(){
 		return isLocalPlayer;
 	}
 }

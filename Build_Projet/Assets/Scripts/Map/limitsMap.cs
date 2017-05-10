@@ -63,15 +63,20 @@ public class limitsMap : MonoBehaviour {
 				GameObject vaisseau = collision.gameObject;
 				GameObject joueur = vaisseau.transform.parent.gameObject;
 
+				// verifie si joueur local et affiche message
+				if (joueur.GetComponent<PlayerInput> ().estLocalPlayer ()) 
+					messOut.SetActive (true); // affiche message
+			
 				// indique joueur out
-				joueur.GetComponent<PlayerInput>().playerOut= -1;
+				joueur.GetComponent<PlayerInput> ().playerOut = -1;
 
 				// recupere fleche
 				arrow = vaisseau.transform.Find ("Arrow").gameObject;
-				//messOut.SetActive (true); // affiche message
 				arrow.SetActive (true); // affiche flèche
+
 				// routine pour afficher message quitte partie au bout de 5 sec
 				StartCoroutine (outOfMap (joueur)); 
+
 			}
 		}
 	}
@@ -87,9 +92,12 @@ public class limitsMap : MonoBehaviour {
 				GameObject joueur = vaisseau.transform.parent.gameObject;
 				joueur.GetComponent<PlayerInput>().playerOut= 0;
 
+				// verifie s'il s'agit du joueur local 
+				if (joueur.GetComponent<PlayerInput> ().estLocalPlayer ()) 
+					messOut.SetActive (false);
+				
 				// recupere fleche
 				arrow = vaisseau.transform.Find ("Arrow").gameObject;
-				//messOut.SetActive (false);
 				arrow.SetActive (false);
 			}
 		}
