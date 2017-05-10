@@ -559,7 +559,7 @@ public class AIBehaviour : NetworkBehaviour {
 		args.Add (transform.gameObject);
 		// Instantiate an object of the used weapon and create it on each client
 		Vector3 spawnPosition = transform.position + (transform.forward * Normal_speed);
-		GameObject weapon = Instantiate (weaponery, spawnPosition, Quaternion.identity);
+		GameObject weapon = Instantiate (weaponery, spawnPosition, transform.rotation);
 		NetworkServer.Spawn (weapon);
 
 		// Call the good appropriate method on each case

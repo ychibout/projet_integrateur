@@ -17,7 +17,7 @@ public class MissileBehaviour : NetworkBehaviour {
 	void Start () 
 	{
 		Damage = 5.0f;
-		LifeTime = 4.0f;
+		LifeTime = 1.0f;
 		MissileSpeed = 45.0f;
 		Rotation_speed = 1.2f;
 	}
@@ -28,7 +28,14 @@ public class MissileBehaviour : NetworkBehaviour {
 	{
 		if (LifeTime > 0.0f) 
 		{
-			Move (Target.transform.position);
+			if (Target != null) 
+			{
+				Move (Target.transform.position);
+			}
+			else
+			{
+				Move (transform.forward);
+			}
 			LifeTime = LifeTime - 0.1f * Time.deltaTime;
 		} 
 		else 
@@ -51,8 +58,15 @@ public class MissileBehaviour : NetworkBehaviour {
 	**/
 	void Move(Vector3 target)
 	{
-		RpcRotateView (target);
-		RpcMoveForward ();
+		if (target != transform.forward) 
+		{
+			RpcRotateView (target);
+			RpcMoveForward ();
+		}
+		else
+		{
+			RpcMoveForward ();
+		}
 	}
 
 
@@ -111,6 +125,10 @@ public class MissileBehaviour : NetworkBehaviour {
 	public void GoTo(ArrayList args)
 	{
 		Target = (GameObject)args[0];
+		if (Target == null) 
+		{
+			LifeTime = 0.5f;
+		}
 		EnemyTag = Target.tag;
 		Damage += (float)args [1];
 	}

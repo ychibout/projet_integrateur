@@ -9,6 +9,10 @@ public class PlayerReseau : NetworkBehaviour {
 	public GameObject playervaisseau;
 	public GameObject _Prey;
 
+	// Weaponery prefab
+	public GameObject _LaserPrefab;		   	// Laser prefab
+	public GameObject _MissilePrefab; 		// Missile prefab
+
 	// Private attributes
 	[SyncVar]
 	private int AdditionalDamage;
@@ -77,25 +81,29 @@ public class PlayerReseau : NetworkBehaviour {
 	 * Return : void
 	 **/
 	[Command]
-	public void CmdUseWeaponery(GameObject weaponery, float current_speed)
+	public void CmdUseWeaponery(int weaponery, float current_speed)
 	{
 		// Create a list of arguments to simplify the argument communication
 		ArrayList args = new ArrayList (2);
+		GameObject weapon;
+		Vector3 spawnPosition = transform.position + (transform.forward * current_speed);
 		args.Add (_Prey);
 		args.Add (AdditionalDamage);
 		args.Add (transform.gameObject);
-		// Instantiate an object of the used weapon and create it on each client
-		Vector3 spawnPosition = transform.position + (transform.forward * current_speed);
-		GameObject weapon = Instantiate (weaponery, spawnPosition, Quaternion.identity);
-		NetworkServer.Spawn (weapon);
 
-		// Call the good appropriate method on each case
-		if (weapon.GetComponent<LaserBehaviour> () != null) // If we shoot a laser
+		// Create the good weapon regarding the sent weaponery code
+		// Instantiate an object of the used weapon and create it on each client
+		// Use the weapon by calling GoTo with right arguments
+		if (weaponery == 0) // If we shoot a laser
 		{
+			weapon = Instantiate (_LaserPrefab, spawnPosition, transform.rotation);
+			NetworkServer.Spawn (weapon);
 			weapon.GetComponent<LaserBehaviour> ().GoTo (args);
 		} 
 		else // If we launch a missile
 		{
+			weapon = Instantiate (_MissilePrefab, spawnPosition, transform.rotation);
+			NetworkServer.Spawn (weapon);
 			weapon.GetComponent<MissileBehaviour> ().GoTo (args);
 		}
 	}

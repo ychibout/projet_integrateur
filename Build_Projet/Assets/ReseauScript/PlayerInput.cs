@@ -9,10 +9,6 @@ public class PlayerInput : NetworkBehaviour {
 	private PlayerReseau Action;
 	public GameObject playerCamera;
 
-	// Weaponery prefab
-	public GameObject _LaserPrefab;		   	// Laser prefab
-	public GameObject _MissilePrefab; 		// Missile prefab
-
 	//Variable de speed
 	public float Speed;
 	public float SpeedMax;
@@ -39,6 +35,14 @@ public class PlayerInput : NetworkBehaviour {
 
 	float progression = 0, valRotation = 0;
 
+	// Shoot control attributes
+	private const float WaitTimeBeforShootMissile = 0.75f;
+	private const float WaitTimeBeforeShootLaser = 0.3f;
+	private const int MaxLasersShot = 10;
+	private float TimerBeforeShootMissile;
+	private float TimerBeforeShootLaser;
+	private int nbLasersShot;
+
 
 	// Use this for initialization
 	void Start () {
@@ -46,7 +50,9 @@ public class PlayerInput : NetworkBehaviour {
 		isLooping = false;
 		isLoopingH = false;
 		Action = transform.GetComponent<PlayerReseau> ();
-
+		TimerBeforeShootMissile = 0.0f;
+		TimerBeforeShootLaser = 0.0f;
+		nbLasersShot = 0;
 	}
 	
 	// Update is called once per frame
@@ -72,15 +78,33 @@ public class PlayerInput : NetworkBehaviour {
 		// Action : shoot laser
 		if (Input.GetKeyDown ("mouse 0") && isLoopingH == false && isLooping == false) 
 		{
-			Debug.Log ("ici1");
-			Action.CmdUseWeaponery (_LaserPrefab, Speed);
+			if ((TimerBeforeShootLaser <= 0.0f) && (nbLasersShot < MaxLasersShot)) 
+			{
+				Action.CmdUseWeaponery (0, Speed);
+				nbLasersShot++;
+			}
+			else
+			{
+				if (TimerBeforeShootLaser <= 0.0f) 
+				{
+					TimerBeforeShootLaser = WaitTimeBeforeShootLaser;
+				}
+			}
 		}
 
 		// Action : shoot missile
 		if (Input.GetKeyDown ("mouse 1") && isLoopingH == false && isLooping == false) 
 		{
-			Debug.Log ("ici2");
-			Action.CmdUseWeaponery (_MissilePrefab, Speed);
+			if (TimerBeforeShootMissile <= 0.0f) 
+			{
+				Action.CmdUseWeaponery (1, Speed);
+
+				if(TimerBeforeShootMissile <= 0.0f)
+				{
+					nbLasersShot = 0;
+					TimerBeforeShootMissile = WaitTimeBeforShootMissile;
+				}
+			} 
 		}
 
 		if (!isLooping && !isLoopingH)
@@ -97,6 +121,17 @@ public class PlayerInput : NetworkBehaviour {
 
 		//Envoie de la nouvelle pos au serveur et client -> fait l'echange 
 		Action.CmdUpdatePosition(translate,rotate);
+
+		// Decrement timer if needed
+		if(TimerBeforeShootLaser > 0.0f)
+		{
+			TimerBeforeShootLaser -= 0.1f * Time.deltaTime;
+			nbLasersShot = 0;
+		}
+		if(TimerBeforeShootMissile > 0.0f)
+		{
+			TimerBeforeShootMissile -= 0.1f * Time.deltaTime;
+		}
 	}
 
 	public bool estLocalPlayer(){
