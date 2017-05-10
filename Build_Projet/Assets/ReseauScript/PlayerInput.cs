@@ -20,6 +20,9 @@ public class PlayerInput : NetworkBehaviour {
 	// si bonus en cours
 	public bool bonus=false;
 
+	// si le joueur est dehors
+	public int playerOut = 0;
+
 	public float tempsLooping = 0.1f;
 	public GameObject camera;
 	protected Vector3 posCamera;
@@ -93,5 +96,9 @@ public class PlayerInput : NetworkBehaviour {
 
 		//Envoie de la nouvelle pos au serveur et client -> fait l'echange 
 		Action.CmdUpdatePosition(translate,rotate);
+	}
+
+	bool estLocalPlayer(){
+		return isLocalPlayer;
 	}
 }

@@ -31,7 +31,6 @@ using UnityEngine.UI;
 public class limitsMap : MonoBehaviour {
 
 	public GameObject messOut; // message pour dire au joueur de faire demi tour
-	public int playerOut = 0; // verifier si le joueur est dehors
 	public Transform target; // cible vers laquelle la fleche regarde
 	GameObject arrow; // fleche
 
@@ -61,14 +60,18 @@ public class limitsMap : MonoBehaviour {
 			// On verifie qu'il s'agit du joueur
 			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
 
+				GameObject vaisseau = collision.gameObject;
+				GameObject joueur = vaisseau.transform.parent.gameObject;
+
+				// indique joueur out
+				joueur.GetComponent<PlayerInput>().playerOut= -1;
+
 				// recupere fleche
-				GameObject coll = GameObject.Find (collision.name);
-				arrow = coll.transform.Find ("Arrow").gameObject;
-				messOut.SetActive (true); // affiche message
+				arrow = vaisseau.transform.Find ("Arrow").gameObject;
+				//messOut.SetActive (true); // affiche message
 				arrow.SetActive (true); // affiche flèche
 				// routine pour afficher message quitte partie au bout de 5 sec
-				StartCoroutine (outOfMap ()); 
-				playerOut = -1;
+				StartCoroutine (outOfMap (joueur)); 
 			}
 		}
 	}
@@ -80,28 +83,30 @@ public class limitsMap : MonoBehaviour {
 		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model") {
 			// verifie si joueur
 			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
+				GameObject vaisseau = collision.gameObject;
+				GameObject joueur = vaisseau.transform.parent.gameObject;
+				joueur.GetComponent<PlayerInput>().playerOut= 0;
+
 				// recupere fleche
-				GameObject coll = GameObject.Find (collision.name);
-				arrow = coll.transform.Find ("Arrow").gameObject;
-				messOut.SetActive (false);
+				arrow = vaisseau.transform.Find ("Arrow").gameObject;
+				//messOut.SetActive (false);
 				arrow.SetActive (false);
-				playerOut = 0;
 			}
 		}
 	}
 
 	// Recharge la scene au bout de 7 secondes
-	private IEnumerator outOfMap(){
+	private IEnumerator outOfMap(GameObject joueur){
 		// attend 5 secondes
 		for (int i = 5; i >= 0; i--) {
 			messOut.transform.GetChild (1).GetComponent<Text> ().text = "00:0"+i;
 			yield return new WaitForSeconds (1);
-			if (playerOut == 0)
+			if (joueur.GetComponent<PlayerInput>().playerOut == 0)
 				i = -1;
 		}
 
 		// si le joueur est toujours dehors
-		if(playerOut == -1){
+		if(joueur.GetComponent<PlayerInput>().playerOut == -1){
 			// recharge la scene
 			Application.LoadLevel("ChoixEquipe");
 		}
