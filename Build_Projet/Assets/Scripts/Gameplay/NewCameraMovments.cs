@@ -20,7 +20,7 @@ public class NewCameraMovments : MonoBehaviour {
     private float speedRotate = 0.05f;
     //Variable de marge de deplacement
     public float hauteur = 3f;
-	public float distance = 50f;
+	public float distance = 30f;
 	public float marge = 0.00010f;
 
 
