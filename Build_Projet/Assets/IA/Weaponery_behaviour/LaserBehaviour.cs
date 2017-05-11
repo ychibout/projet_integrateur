@@ -55,13 +55,14 @@ public class LaserBehaviour : NetworkBehaviour {
 	 **/
 	void OnTriggerEnter(Collider intruder)
 	{
-		if (string.Compare(intruder.tag, EnemyTag) == 0) 
-		{
-			intruder.GetComponent<AIBehaviour>().TakeDamage(Damage);
-			Destroy (transform.gameObject);
+		
+		if (string.Compare (intruder.tag, EnemyTag) == 0) {
+				intruder.GetComponent<AIBehaviour> ().TakeDamage (Damage);
+				Destroy (transform.gameObject);
 		}
 	}
 
+		
 
 	/**
 	 * Method : GoTo
