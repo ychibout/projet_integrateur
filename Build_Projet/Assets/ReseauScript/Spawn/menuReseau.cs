@@ -33,17 +33,6 @@ public class menuReseau : NetworkBehaviour {
 			if (Input.GetKeyDown (KeyCode.R)) {	//Lance un client rouge
 				GameObject.FindGameObjectWithTag("equipe").GetComponent<team_choice>().team_v = 2;
 
-				// tag
-				GameObject objtmp = nm.playerPrefab;
-				//objtmp.tag = "Equipe2";
-				Transform objtmpChild = objtmp.transform.GetChild (0);
-				//objtmpChild.tag = "Equipe2";
-				/*
-				Transform nomJoueurtmp = objtmpChild.transform.GetChild (4);
-				Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
-				nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.red;
-*/
-
 				nm.StartClient();
 				connecte = true;
 				Debug.Log ("LanceR");
@@ -51,17 +40,6 @@ public class menuReseau : NetworkBehaviour {
 
 			if (Input.GetKeyDown (KeyCode.B)) {	//Lance un client bleu
 				GameObject.FindGameObjectWithTag("equipe").GetComponent<team_choice>().team_v = 1;
-
-				// tag
-				GameObject objtmp = nm.playerPrefab;
-				//objtmp.tag = "Equipe1";
-				Transform objtmpChild = objtmp.transform.GetChild (0);
-				//objtmpChild.tag = "Equipe1";
-				/*
-				Transform nomJoueurtmp = objtmpChild.transform.GetChild (4);
-				Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
-				nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.blue;
-*/
 
 				nm.StartClient();
 				connecte = true;

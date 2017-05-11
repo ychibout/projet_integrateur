@@ -19,13 +19,13 @@ public class invincible : MonoBehaviour {
 
 	// Lorsqu'un joueur tire en direction de la zone
 	private void OnTriggerEnter(Collider collision){
-
-		// Attendre la modif de code de Guillaume
+		Debug.Log ("ok dans inv");
 		// On verife qu'il s'agit d'une balle
 		if (collision.tag == "Bullet") {
+			Debug.Log ("detruit");
 			// on detruit la balle lorsqu'elle entre dans la zone safe
 			Destroy(collision.gameObject);
-			Debug.Log ("Balle entre");
+
 		}
 	}
 }
