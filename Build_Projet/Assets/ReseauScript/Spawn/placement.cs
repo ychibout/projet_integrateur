@@ -10,14 +10,6 @@ public class placement : NetworkBehaviour {
 
 	void Start() {
 
-		// pour lancer safeZone
-		GameObject safeZoneBlue = GameObject.Find("SafeZoneBlue");
-		GameObject safeZoneRed = GameObject.Find("SafeZoneRed");
-		// lance
-		safeZoneRed.GetComponent<SpawnSafeZone>().initialise();
-		safeZoneBlue.GetComponent<SpawnSafeZone>().initialise();
-
-
 		spawnPointsBlue = GameObject.FindGameObjectsWithTag("SpawnBlue");
 		spawnPointsRed = GameObject.FindGameObjectsWithTag("SpawnRed");
 
