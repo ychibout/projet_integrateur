@@ -30,7 +30,7 @@ public class portalCreation : MonoBehaviour {
 
 	public GameObject portal; // objet portal
 	public int counterP = 0; // compteur nbr portail
-	public int nbrP = 25; // nbr voulu
+	public int nbrP = 50; // nbr voulu
 
 	/*********************************************************************
 	************************* START & UPDATE *****************************
@@ -56,7 +56,7 @@ public class portalCreation : MonoBehaviour {
 			GameObject newPortal; 
 			newPortal = Instantiate(portal); 
 			// Position aléatoire dans la sphere de la map ici pour un scale de la map de 500
-			newPortal.transform.position = Random.insideUnitSphere * 200; // A CHANGER SI ON MODIFIE TAILLE LIMITe DE JEU
+			newPortal.transform.position = Random.insideUnitSphere * 450; // A CHANGER SI ON MODIFIE TAILLE LIMITe DE JEU
 			// Rotation aléatoire
 			newPortal.transform.rotation = Random.rotationUniform;
 			counterP++;
