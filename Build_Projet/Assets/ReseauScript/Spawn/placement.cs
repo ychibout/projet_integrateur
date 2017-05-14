@@ -14,7 +14,7 @@ public class placement : NetworkBehaviour {
 		spawnPointsRed = GameObject.FindGameObjectsWithTag("SpawnRed");
 
 		if (!isServer)
-			Cmdreplacement (GameObject.FindGameObjectWithTag ("equipe").GetComponent<team_choice> ().team_v);
+			Cmdreplacement (GameObject.FindGameObjectWithTag ("Information").GetComponent<Information> ().team);
 	} 
 
 	void Update()

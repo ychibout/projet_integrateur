@@ -15,13 +15,13 @@ public class PlayerReseau : NetworkBehaviour {
 
 	// Private attributes
 	[SyncVar]
-	private int AdditionalDamage;
+	private float AdditionalDamage;
 
 	// Use this for initialization
 	void Start () 
 	{
 		_Prey = null;
-		AdditionalDamage = 0;
+		AdditionalDamage = 0.0f;
 	}
 
 	[Command]

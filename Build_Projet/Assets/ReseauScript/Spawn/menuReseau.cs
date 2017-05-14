@@ -19,11 +19,18 @@ public class menuReseau : NetworkBehaviour {
 		prefabs = nm.spawnPrefabs;
 		player = GameObject.FindGameObjectWithTag ("Information").GetComponent<Information> ();
 		ChangementVaisseau();
+		if (player.team == 0) {
+			nm.StartServer ();
+			Debug.Log ("lancer");
+		} else {
+			Debug.Log ("Client");
+			nm.StartClient ();
+		}
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (!connecte) {
+		/*if (!connecte) {
 			if (Input.GetKeyDown (KeyCode.S)) {	//Lance un serveur
 				nm.StartServer();
 				connecte = true;
@@ -45,17 +52,7 @@ public class menuReseau : NetworkBehaviour {
 				connecte = true;
 				Debug.Log ("LanceB");
 			}
-		}
-	}
-
-	void OnGUI()
-	{
-		if (!connecte)
-		{
-			GUI.Label(new Rect(2, 10, 150, 100), "Press S for server");        
-			GUI.Label(new Rect(2, 30, 150, 100), "Press B for client bleu");
-			GUI.Label(new Rect(2, 50, 150, 100), "Press R for client rouge");
-		}
+		}*/
 	}
 
 	void ChangementVaisseau()

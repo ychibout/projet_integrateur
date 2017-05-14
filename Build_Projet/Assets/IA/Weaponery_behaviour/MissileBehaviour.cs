@@ -21,7 +21,7 @@ public class MissileBehaviour : NetworkBehaviour {
 		MissileSpeed = 45.0f;
 		Rotation_speed = 1.2f;
 	}
-	
+
 	// Update is called once per frame
 	// Calculate the missile movement and destroy the missile when LifeTime == 0.0f
 	void Update () 
@@ -125,11 +125,23 @@ public class MissileBehaviour : NetworkBehaviour {
 	public void GoTo(ArrayList args)
 	{
 		Target = (GameObject)args[0];
+		GameObject Launcher = (GameObject)args [2];
 		if (Target == null) 
 		{
 			LifeTime = 0.5f;
+			if (Launcher.tag == "Equipe1") 
+			{
+				EnemyTag = "Equipe2";
+			}
+			else
+			{
+				EnemyTag = "Equipe1";
+			}
 		}
-		EnemyTag = Target.tag;
+		else
+		{
+			EnemyTag = Target.tag;
+		}
 		Damage += (float)args [1];
 	}
 

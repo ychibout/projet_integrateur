@@ -18,7 +18,7 @@ public class LaserBehaviour : NetworkBehaviour {
 		LifeTime = 3.0f;
 		LaserSpeed = 150.0f;
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -45,7 +45,7 @@ public class LaserBehaviour : NetworkBehaviour {
 		// Moving forward all the time
 		transform.position += transform.forward * LaserSpeed * Time.deltaTime;
 	}
-		
+
 
 	/**
 	 * Method : OnTriggerEnter
@@ -55,14 +55,14 @@ public class LaserBehaviour : NetworkBehaviour {
 	 **/
 	void OnTriggerEnter(Collider intruder)
 	{
-		
+
 		if (string.Compare (intruder.tag, EnemyTag) == 0) {
-				intruder.GetComponent<AIBehaviour> ().TakeDamage (Damage);
-				Destroy (transform.gameObject);
+			intruder.GetComponent<AIBehaviour> ().TakeDamage (Damage);
+			Destroy (transform.gameObject);
 		}
 	}
 
-		
+
 
 	/**
 	 * Method : GoTo
@@ -73,11 +73,26 @@ public class LaserBehaviour : NetworkBehaviour {
 	 **/
 	public void GoTo(ArrayList args)
 	{
-		GameObject targ = (GameObject)args [0];
-		GameObject launcher = (GameObject)args [2];
-		EnemyTag = targ.tag;
+		GameObject Target = (GameObject)args [0];
+		GameObject Launcher = (GameObject)args [2];
+		if (Target == null) 
+		{
+			LifeTime = 0.5f;
+			if (Launcher.tag == "Equipe1") 
+			{
+				EnemyTag = "Equipe2";
+			}
+			else
+			{
+				EnemyTag = "Equipe1";
+			}
+		}
+		else
+		{
+			EnemyTag = Target.tag;
+		}
 		Damage += (float)args [1];
-		transform.rotation = launcher.transform.rotation;
+		transform.rotation = Launcher.transform.rotation;
 	}
 
 }
