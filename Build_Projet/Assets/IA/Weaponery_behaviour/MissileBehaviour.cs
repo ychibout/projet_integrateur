@@ -109,7 +109,18 @@ public class MissileBehaviour : NetworkBehaviour {
 	{
 		if (string.Compare(intruder.tag, EnemyTag) == 0) 
 		{
-			intruder.GetComponent<AIBehaviour>().TakeDamage(Damage);
+			if (intruder.GetComponent<AIBehaviour> () != null) 
+			{
+				intruder.GetComponent<AIBehaviour> ().TakeDamage (Damage);
+			}
+			if (intruder.GetComponent<PlayerHealth> () != null) 
+			{
+				intruder.GetComponent<PlayerHealth> ().TakeDamage (Damage);
+			}
+			if(intruder.GetComponent<Croiseur>() != null)
+			{
+				intruder.GetComponent<Croiseur> ().TakeDamage (Damage);
+			}
 			NetworkServer.Destroy (transform.gameObject);
 		}
 	}

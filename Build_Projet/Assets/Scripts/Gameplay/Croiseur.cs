@@ -36,13 +36,15 @@ public class Croiseur : NetworkBehaviour {
 
 	// Fonction TakeDamage
 	public void TakeDamage(float damage) {
+		if (!isServer) 
+		{
+			return;
+		}
 		if (life <= 0.0f)
 			return;
 		life -= damage;
 		if (life <= 0.0f) {
 			RpcOnDestroyed(transform.name);
-		} else {
-
 		}
 	}
 
@@ -57,9 +59,7 @@ public class Croiseur : NetworkBehaviour {
 		Time.timeScale = 0.0f;
 		// Affichage
 		end_panel.SetActive(true);
-		Debug.Log (croiseur);
 		if(croiseur.Equals("croiseurBlue")){
-			Debug.Log ("coucou");
 			if(player.GetComponent<Information>().team == 1){
 				end_panel.SetActive (true);
 				end_panel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "YOU LOSE!";

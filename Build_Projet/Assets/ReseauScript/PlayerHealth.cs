@@ -38,7 +38,7 @@ public class PlayerHealth : NetworkBehaviour
 	 * Desc : Apply the taken damage on the current object life. If life <= 0, then the object is destroyed
 	 * Return : void
 	 **/
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 		// Verify if we are on the server side
 		if (!isServer) // We can't call the method on the client side -- don't cheat !

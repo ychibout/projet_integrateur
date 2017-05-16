@@ -97,15 +97,14 @@ public class PlayerReseau : NetworkBehaviour {
 		if (weaponery == 0) // If we shoot a laser
 		{
 			weapon = Instantiate (_LaserPrefab, spawnPosition, transform.rotation);
-			NetworkServer.Spawn (weapon);
 			weapon.GetComponent<LaserBehaviour> ().GoTo (args);
 		} 
 		else // If we launch a missile
 		{
 			weapon = Instantiate (_MissilePrefab, spawnPosition, transform.rotation);
-			NetworkServer.Spawn (weapon);
 			weapon.GetComponent<MissileBehaviour> ().GoTo (args);
 		}
+		NetworkServer.Spawn (weapon);
 	}
 
 

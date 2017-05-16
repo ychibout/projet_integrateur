@@ -14,7 +14,7 @@ public class LaserBehaviour : NetworkBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		Damage = 2.0f;
+		Damage = 50.0f;
 		LifeTime = 3.0f;
 		LaserSpeed = 150.0f;
 	}
@@ -55,10 +55,22 @@ public class LaserBehaviour : NetworkBehaviour {
 	 **/
 	void OnTriggerEnter(Collider intruder)
 	{
+		if (string.Compare (intruder.tag, EnemyTag) == 0) 
+		{
+			if (intruder.GetComponent<AIBehaviour> () != null) 
+			{
+				intruder.GetComponent<AIBehaviour> ().TakeDamage (Damage);
+			}
+			if (intruder.GetComponent<PlayerHealth> () != null) 
+			{
+				intruder.GetComponent<PlayerHealth> ().TakeDamage (Damage);
+			}
+			if(intruder.GetComponent<Croiseur>() != null)
+			{
+				intruder.GetComponent<Croiseur> ().TakeDamage (Damage);
+			}
 
-		if (string.Compare (intruder.tag, EnemyTag) == 0) {
-			intruder.GetComponent<AIBehaviour> ().TakeDamage (Damage);
-			Destroy (transform.gameObject);
+			NetworkServer.Destroy (transform.gameObject);
 		}
 	}
 
