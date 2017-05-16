@@ -14,7 +14,7 @@ public class Croiseur : NetworkBehaviour {
 	public float LIFE = 100.0f;
 
 	// EndGame Panel
-	//public GameObject end_panel;
+	public GameObject end_panel;
 
 	// Player
 	private GameObject player;
@@ -56,7 +56,7 @@ public class Croiseur : NetworkBehaviour {
 		// Arret jeu
 		Time.timeScale = 0.0f;
 		// Affichage *à faire quand le panel sera ajoute*
-		/*
+
 		end_panel.SetActive(true);
 		if(croiseur.Equals("croiseurBlue")){
 			if(player.GetComponent<Information>().team == 1){
@@ -77,6 +77,6 @@ public class Croiseur : NetworkBehaviour {
 					end_panel.SetActive (true);
 					end_panel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = "YOU LOSE!";
 			}
-		}*/
+		}
 	}
 }
