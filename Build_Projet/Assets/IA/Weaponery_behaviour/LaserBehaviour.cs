@@ -14,7 +14,7 @@ public class LaserBehaviour : NetworkBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		Damage = 50.0f;
+		Damage = 2.0f;
 		LifeTime = 3.0f;
 		LaserSpeed = 150.0f;
 	}

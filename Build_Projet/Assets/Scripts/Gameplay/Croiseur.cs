@@ -25,7 +25,7 @@ public class Croiseur : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
 		life = LIFE;
-		//end_panel.SetActive (false);
+		end_panel.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -42,7 +42,7 @@ public class Croiseur : NetworkBehaviour {
 			return;
 		life -= damage;
 		if (life <= 0.0f) {
-			RpcOnDestroyed(transform.name);
+			RpcOnDestroyed(transform.parent.name);
 		}
 	}
 

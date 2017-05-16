@@ -1,2 +1,4 @@
 Base path: C:/Program Files/Unity/Editor/Data
-Cmd: initializeCompiler
+Cmd: getPlatforms
+Cmd: preprocess
+  insize=4102 outsize=1110 ok=1

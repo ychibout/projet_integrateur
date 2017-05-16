@@ -47,6 +47,9 @@ public class placement : NetworkBehaviour {
 			Transform nomJoueurtmp = child.transform.GetChild (4);
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.blue;
+
+			// couleur de l'icone minimap
+			child.GetChild(7).GetComponent<SpriteRenderer>().color = Color.blue;
 		}
 
 		if (team == 2) {
@@ -63,6 +66,9 @@ public class placement : NetworkBehaviour {
 			Transform nomJoueurtmp = child.transform.GetChild (4);
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.red;
+
+			// couleur de l'icone minimap
+			child.GetChild(7).GetComponent<SpriteRenderer>().color = Color.red;
 		}
 		Rpcclientremplacement (team);
 	}
@@ -89,6 +95,9 @@ public class placement : NetworkBehaviour {
 			Transform nomJoueurtmp = child.transform.GetChild (4);
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.blue;
+
+			// couleur de l'icone minimap
+			child.GetChild(7).GetComponent<SpriteRenderer>().color = Color.blue;
 		}
 
 		if (team == 2) {
@@ -106,6 +115,9 @@ public class placement : NetworkBehaviour {
 			Transform nomJoueurtmp = child.transform.GetChild (4);
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.red;
+
+			// couleur de l'icone minimap
+			child.GetChild(7).GetComponent<SpriteRenderer>().color = Color.red;
 		}
 	}
 }
