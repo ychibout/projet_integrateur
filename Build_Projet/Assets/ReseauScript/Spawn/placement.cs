@@ -28,17 +28,33 @@ public class placement : NetworkBehaviour {
 
 
 		if (team == 1) {
-			transform.Rotate(0,90,0);
+			// ajoute dans le compte des joueurs par equipe
+		/*	GameObject network = GameObject.Find("Network");
+			network.GetComponent<menuReseau>().AjoutJoueur(team);*/
+		
+			// trouve posistion spawn
 			GetComponent<Transform> ().position = spawnPointsBlue[Random.Range (0, spawnPointsBlue.Length)].transform.position;
+
+			// met le joueur dans le bon sens
+			transform.Rotate(0,90,0);
+
+			// tags
 			transform.tag = "Equipe1";
 			Transform child = transform.GetChild (0);
 			child.tag = "Equipe1";
+
+			// couleur du nom du joueur
 			Transform nomJoueurtmp = child.transform.GetChild (4);
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.blue;
 		}
 
 		if (team == 2) {
+
+			// ajoute dans le compte des joueurs par equipe
+			/*GameObject network = GameObject.Find("Network");
+			network.GetComponent<menuReseau>().AjoutJoueur(team);*/
+
 			transform.Rotate(0,-90,0);
 			GetComponent<Transform> ().position = spawnPointsRed[Random.Range (0, spawnPointsRed.Length)].transform.position;
 			transform.tag = "Equipe2";
@@ -54,8 +70,14 @@ public class placement : NetworkBehaviour {
 	[ClientRpc]
 	public void Rpcclientremplacement (int team)
 	{
+		Debug.Log ("ok");
+
 
 		if (team == 1) {
+			// ajoute dans le compte des joueurs par equipe
+			/*GameObject network = GameObject.Find("Network");
+			network.GetComponent<menuReseau>().AjoutJoueur(team);*/
+
 			transform.Rotate(0,90,0);
 			GetComponent<Transform> ().position = spawnPointsBlue[Random.Range (0, spawnPointsBlue.Length)].transform.position;
 		
@@ -70,6 +92,10 @@ public class placement : NetworkBehaviour {
 		}
 
 		if (team == 2) {
+			// ajoute dans le compte des joueurs par equipe
+			/*GameObject network = GameObject.Find("Network");
+			network.GetComponent<menuReseau>().AjoutJoueur(team);*/
+
 			transform.Rotate(0,-90,0);
 			GetComponent<Transform> ().position = spawnPointsRed[Random.Range (0, spawnPointsRed.Length)].transform.position;
 			// tag du joueur selon equipe

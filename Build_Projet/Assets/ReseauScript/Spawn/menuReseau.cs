@@ -7,12 +7,14 @@ public class menuReseau : NetworkBehaviour {
 
 	public NetworkManager nm;
 	public GameObject t;
-
+	public static int s_nbRouge;
+	public static int s_nbBleu;
 
 	private List<GameObject> prefabs;
 	private Information player;
 
 	bool connecte = false;
+
 
 	void Start() {
 		nm = GetComponent<NetworkManager> ();
@@ -21,12 +23,30 @@ public class menuReseau : NetworkBehaviour {
 		ChangementVaisseau();
 		if (player.team == 0) {
 			nm.StartServer ();
+			s_nbRouge = 0;
+			s_nbBleu = 0;
 			Debug.Log ("lancer");
-		} else {
+		} else if (player.team == 1) {
+			s_nbBleu++;
+			Debug.Log ("Client");
+			nm.StartClient ();
+		} else if (player.team == 2) {
+			s_nbBleu++;
 			Debug.Log ("Client");
 			nm.StartClient ();
 		}
 	}
+
+	//[Command] 
+	/*public void AjoutJoueur(int equipe){
+		if (equipe == 1)
+			s_nbBleu++;
+		else
+			s_nbRouge++;
+		Debug.Log ("fct r : " + s_nbRouge + " fct b : " + s_nbBleu);
+		
+	}*/
+
 
 	// Update is called once per frame
 	void Update () {
