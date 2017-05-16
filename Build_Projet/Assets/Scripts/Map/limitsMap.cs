@@ -55,14 +55,14 @@ public class limitsMap : MonoBehaviour {
 	// Lorsque le joueur sort de la map
 	private void OnTriggerExit(Collider collision){
 
-		// on exlut les IA
-		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model") {
+		GameObject vaisseau = collision.gameObject;
+		GameObject joueur = vaisseau.transform.parent.gameObject;
+
+		// on exlut les IA et les croiseurs
+		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model" && joueur.name != "croiseurBlue" && joueur.name != "croiseurRed") {
 			// On verifie qu'il s'agit du joueur
 			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
-
-				GameObject vaisseau = collision.gameObject;
-				GameObject joueur = vaisseau.transform.parent.gameObject;
-
+				
 				// verifie si joueur local et affiche message
 				if (joueur.GetComponent<PlayerInput> ().estLocalPlayer ()) 
 					messOut.SetActive (true); // affiche message
@@ -84,12 +84,12 @@ public class limitsMap : MonoBehaviour {
 	// Lorsque le joueur revient dans la map
 	private void OnTriggerEnter(Collider collision){
 
+		GameObject vaisseau = collision.gameObject;
+		GameObject joueur = vaisseau.transform.parent.gameObject;
 		// exlusion IA
-		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model") {
+		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model" && joueur.name != "croiseurBlue" && joueur.name != "croiseurRed") {
 			// verifie si joueur
 			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
-				GameObject vaisseau = collision.gameObject;
-				GameObject joueur = vaisseau.transform.parent.gameObject;
 				joueur.GetComponent<PlayerInput>().playerOut= 0;
 
 				// verifie s'il s'agit du joueur local 
