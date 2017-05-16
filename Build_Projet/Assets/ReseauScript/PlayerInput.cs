@@ -8,7 +8,7 @@ public class PlayerInput : NetworkBehaviour {
 
 	private PlayerReseau Action;
 	public GameObject playerCamera;
-
+	public GameObject playerMap;
 	//Variable de speed
 	public float Speed;
 	public float SpeedMax;
@@ -60,6 +60,7 @@ public class PlayerInput : NetworkBehaviour {
 
 		if (!isLocalPlayer) {
 			playerCamera.SetActive (false);
+			playerMap.SetActive (false);
 			return;
 		} 
 
