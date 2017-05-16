@@ -56,27 +56,29 @@ public class limitsMap : MonoBehaviour {
 	private void OnTriggerExit(Collider collision){
 
 		GameObject vaisseau = collision.gameObject;
-		GameObject joueur = vaisseau.transform.parent.gameObject;
+		if (collision.tag != "Bullet") {
+			GameObject joueur = vaisseau.transform.parent.gameObject;
 
-		// on exlut les IA et les croiseurs
-		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model" && joueur.name != "croiseurBlue" && joueur.name != "croiseurRed") {
-			// On verifie qu'il s'agit du joueur
-			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
+			// on exlut les IA et les croiseurs
+			if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model" && joueur.name != "croiseurBlue" && joueur.name != "croiseurRed") {
+				// On verifie qu'il s'agit du joueur
+				if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
+					
+					// verifie si joueur local et affiche message
+					if (joueur.GetComponent<PlayerInput> ().estLocalPlayer ())
+						messOut.SetActive (true); // affiche message
 				
-				// verifie si joueur local et affiche message
-				if (joueur.GetComponent<PlayerInput> ().estLocalPlayer ()) 
-					messOut.SetActive (true); // affiche message
-			
-				// indique joueur out
-				joueur.GetComponent<PlayerInput> ().playerOut = -1;
+					// indique joueur out
+					joueur.GetComponent<PlayerInput> ().playerOut = -1;
 
-				// recupere fleche
-				arrow = vaisseau.transform.Find ("Arrow").gameObject;
-				arrow.SetActive (true); // affiche flèche
+					// recupere fleche
+					arrow = vaisseau.transform.Find ("Arrow").gameObject;
+					arrow.SetActive (true); // affiche flèche
 
-				// routine pour afficher message quitte partie au bout de 5 sec
-				StartCoroutine (outOfMap (joueur)); 
+					// routine pour afficher message quitte partie au bout de 5 sec
+					StartCoroutine (outOfMap (joueur)); 
 
+				}
 			}
 		}
 	}
@@ -85,20 +87,22 @@ public class limitsMap : MonoBehaviour {
 	private void OnTriggerEnter(Collider collision){
 
 		GameObject vaisseau = collision.gameObject;
-		GameObject joueur = vaisseau.transform.parent.gameObject;
-		// exlusion IA
-		if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model" && joueur.name != "croiseurBlue" && joueur.name != "croiseurRed") {
-			// verifie si joueur
-			if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
-				joueur.GetComponent<PlayerInput>().playerOut= 0;
+		if (collision.tag != "Bullet") {
+			GameObject joueur = vaisseau.transform.parent.gameObject;
+			// exlusion IA
+			if (collision.name != "AI_Equipe1_model" && collision.name != "AI_Equipe2_model" && joueur.name != "croiseurBlue" && joueur.name != "croiseurRed") {
+				// verifie si joueur
+				if (collision.tag == "Equipe1" || collision.tag == "Equipe2") {
+					joueur.GetComponent<PlayerInput> ().playerOut = 0;
 
-				// verifie s'il s'agit du joueur local 
-				if (joueur.GetComponent<PlayerInput> ().estLocalPlayer ()) 
-					messOut.SetActive (false);
-				
-				// recupere fleche
-				arrow = vaisseau.transform.Find ("Arrow").gameObject;
-				arrow.SetActive (false);
+					// verifie s'il s'agit du joueur local 
+					if (joueur.GetComponent<PlayerInput> ().estLocalPlayer ())
+						messOut.SetActive (false);
+					
+					// recupere fleche
+					arrow = vaisseau.transform.Find ("Arrow").gameObject;
+					arrow.SetActive (false);
+				}
 			}
 		}
 	}

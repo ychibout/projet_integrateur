@@ -7,8 +7,6 @@ public class menuReseau : NetworkBehaviour {
 
 	public NetworkManager nm;
 	public GameObject t;
-	public static int s_nbRouge;
-	public static int s_nbBleu;
 
 	private List<GameObject> prefabs;
 	private Information player;
@@ -23,22 +21,18 @@ public class menuReseau : NetworkBehaviour {
 		ChangementVaisseau();
 		if (player.team == 0) {
 			nm.StartServer ();
-			s_nbRouge = 0;
-			s_nbBleu = 0;
 			Debug.Log ("lancer");
 		} else if (player.team == 1) {
-			s_nbBleu++;
 			Debug.Log ("Client");
 			nm.StartClient ();
 		} else if (player.team == 2) {
-			s_nbBleu++;
 			Debug.Log ("Client");
 			nm.StartClient ();
 		}
 	}
 
 	//[Command] 
-	/*public void AjoutJoueur(int equipe){
+	/*public void CmdajoutJoueur(int equipe){
 		if (equipe == 1)
 			s_nbBleu++;
 		else
