@@ -8,12 +8,9 @@ public class MenuPause : NetworkBehaviour {
 
 	private bool isPaused = false;
 
-	public DisconnectClient nm ;
-	public GameObject prefabs; 
 
 	// Use this for initialization
 	void Start () {
-		nm = GameObject.FindGameObjectWithTag ("Network").GetComponent<DisconnectClient>();
 	}
 	
 	// Update is called once per frame
