@@ -1,7 +1,7 @@
 Projet Intégrateur -- The BUG
 ===
 
-![Affiche du jeu][/https://raw.githubusercontent.com/ychibout/projet_integrateur/thebug_flyer.png "Affiche du jeu"]
+![Affiche du jeu](https://raw.githubusercontent.com/ychibout/projet_integrateur/thebug_flyer.png "Affiche du jeu")
 
 ### Qui sommes nous ?
 
