@@ -1,5 +1,7 @@
-Projet Intégrateur
+Projet Intégrateur -- The BUG
 ===
+
+[[https://github.com/ychibout/projet_integrateur/blob/master/thebug_flyerA5-page-001.jpg|alt=affiche]]
 
 ### Qui sommes nous ?
 
@@ -17,13 +19,9 @@ de projet, de management d'équipe et de nous permettre de combiner des capacit�
 dans des domaines différents.
 
 Ce projet est un jeu vidéo en multi-joueurs qui est jouable sur une tablette possédant un leapmotion. Ce leapmotion est 
-relié à la tablette via un rasberry pi et les tablettes sont reliées à un serveur. Le principe du jeu est simple, il s'agit 
+relié à la tablette via un serveur de manette et les tablettes sont reliées à un serveur central. Le principe du jeu est simple, il s'agit 
 d'une bataille sapatiale entre deux factions possédant chacune un croiseur. Chaque faction doit détruire le croiseur de l'autre, 
 tout en faisant le plus de victime possible.
-
-### Nom du jeu
-
-Le jeu se nomme : *FIXME*
 
 
 ### __Page en construction__
