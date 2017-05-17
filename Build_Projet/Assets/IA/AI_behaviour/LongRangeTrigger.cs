@@ -16,7 +16,7 @@ public class LongRangeTrigger : MonoBehaviour {
 	**/
 	void OnTriggerEnter (Collider intruder) 
 	{  
-		if (intruder.tag == _EnemyTeamTag) 
+		if ((intruder.tag == _EnemyTeamTag) && ((intruder.GetComponent<Croiseur>() != null))) 
 		{
 			_Self.GetComponent<AIBehaviour>().IamYourPrey(intruder.gameObject);
 			Debug.Log ("je chasse" + intruder.name);
@@ -32,7 +32,7 @@ public class LongRangeTrigger : MonoBehaviour {
 	**/
 	void OnTriggerExit (Collider intruder) 
 	{
-		if (intruder.tag == _EnemyTeamTag) 
+		if ((intruder.tag == _EnemyTeamTag) && (intruder.GetComponent<Croiseur>() != null)) 
 		{
 			_Self.GetComponent<AIBehaviour>().IamNoLongerThere();
 		}

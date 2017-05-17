@@ -17,7 +17,7 @@ public class CloseRangeTrigger : MonoBehaviour {
 	**/
 	void OnTriggerEnter (Collider intruder) 
 	{
-		if (intruder.tag == _EnemyTeamTag) 
+		if ((intruder.tag == _EnemyTeamTag) && (intruder.GetComponent<Croiseur>() != null)) 
 		{
 			Enemy = intruder.gameObject;
 			_Self.GetComponent<AIBehaviour>().GettingCloser(intruder.gameObject);
@@ -33,7 +33,7 @@ public class CloseRangeTrigger : MonoBehaviour {
 	**/
 	void OnTriggerExit (Collider intruder) 
 	{
-		if (intruder.tag == _EnemyTeamTag) 
+		if ((intruder.tag == _EnemyTeamTag) && (intruder.GetComponent<Croiseur>() != null)) 
 		{
 			_Self.GetComponent<AIBehaviour>().IamYourPrey(Enemy);
 		}
