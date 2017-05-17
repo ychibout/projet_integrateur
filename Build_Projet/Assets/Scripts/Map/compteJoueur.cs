@@ -1,41 +1,45 @@
-﻿using System.Collections;
+﻿/*
+ * Elisa Kalbé
+ * compteJoueur.cs
+ * 
+ * Script pour compter le nombre de joueur dans chaque equipe
+ * 
+ * Dans scène Game
+ * A mettre sur l'objet : cptJoueur
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class compteJoueur : NetworkBehaviour {
+public class compteJoueur : MonoBehaviour {
 
-	public static List<string> joueurEquipe1 = new List<string>();
-	public static List<string> joueurEquipe2 = new List<string>();
+	public static int nbrJoueurEquipe1 = 0;
+	public static int nbrJoueurEquipe2 = 0;
 
-	public void ajout(string name, int equipe){
-		if (!isServer)
-			return;
-		if (equipe == 1)
-			joueurEquipe1.Add (name);
-		else
-			joueurEquipe2.Add(name);
-		affiche();
-	}
-		
-	public void supprimer(string name, int equipe){
-		if (!isServer)
-			return;
-		if (equipe == 1)
-			joueurEquipe1.Remove (name);
-		else
-			joueurEquipe2.Remove (name);
-		
-	}
-		
+	// compte le nbr de joueur
+	public void demarreCpt(){
 
-	public void affiche(){
-	
-		Debug.Log ("equipe 1 : ");
-		foreach(string s in joueurEquipe1)
-		{
-			Debug.Log (s);
+		// pour les objets taggés Equipe1
+		foreach (GameObject joueur in GameObject.FindGameObjectsWithTag ("Equipe1")) {
+			// on garde les joueurs
+			if (joueur.GetComponent<PlayerInput> () != null) {
+				Debug.Log ("test;  ");
+
+				Debug.Log(joueur.name);
+				nbrJoueurEquipe1++;
+			}
+		}
+
+		// pour les objets taggés Equipe2
+		foreach (GameObject joueur in GameObject.FindGameObjectsWithTag ("Equipe2")) {
+			// on garde les joueurs
+			if (joueur.GetComponent<PlayerInput> () != null) {
+				nbrJoueurEquipe2++;
+			}
 		}
 	}
-
 }
+
+

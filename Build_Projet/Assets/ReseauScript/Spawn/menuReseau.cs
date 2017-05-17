@@ -31,17 +31,6 @@ public class menuReseau : NetworkBehaviour {
 		}
 	}
 
-	//[Command] 
-	/*public void CmdajoutJoueur(int equipe){
-		if (equipe == 1)
-			s_nbBleu++;
-		else
-			s_nbRouge++;
-		Debug.Log ("fct r : " + s_nbRouge + " fct b : " + s_nbBleu);
-		
-	}*/
-
-
 	// Update is called once per frame
 	void Update () {
 		/*if (!connecte) {
