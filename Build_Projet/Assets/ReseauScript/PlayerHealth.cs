@@ -29,6 +29,11 @@ public class PlayerHealth : NetworkBehaviour
 	void Start () 
 	{
 		Life = MaxHealth;
+		if (transform.tag == "Equipe1") {
+			_SpawnPoints = transform.GetComponent<placement> ().spawnPointsBlue;
+		} else if(transform.tag == "Equipe2"){
+			_SpawnPoints = transform.GetComponent<placement> ().spawnPointsRed;	
+		}
 	}
 
 

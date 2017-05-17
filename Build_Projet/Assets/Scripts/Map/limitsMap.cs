@@ -119,8 +119,7 @@ public class limitsMap : MonoBehaviour {
 
 		// si le joueur est toujours dehors
 		if(joueur.GetComponent<PlayerInput>().playerOut == -1){
-			// recharge la scene
-			Application.LoadLevel("ChoixEquipe");
+			// respawn
 		}
 	}
 
