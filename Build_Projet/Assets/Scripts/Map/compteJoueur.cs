@@ -1,11 +1,11 @@
 ﻿/*
  * Elisa Kalbé
+ * Nathan Urbain
  * compteJoueur.cs
  * 
  * Script pour compter le nombre de joueur dans chaque equipe
  * 
- * Dans scène Game
- * A mettre sur l'objet : cptJoueur
+ * obsolete
  * 
  */
 

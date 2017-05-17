@@ -7,7 +7,7 @@ public class placement : NetworkBehaviour {
 
 	public GameObject[] spawnPointsRed;
 	public GameObject[] spawnPointsBlue;
-	public GameObject mess_chang; // message en cas de choix automatique d'équipe
+	//public GameObject mess_chang; // message en cas de choix automatique d'équipe
 
 	void Start() {
 
@@ -41,9 +41,12 @@ public class placement : NetworkBehaviour {
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.blue;
 
+			// couleur de l'icone minimap
+			child.GetChild(7).GetComponent<SpriteRenderer>().color = Color.blue;
+
 
 			// verifie si le nbr de joueur est proportionné
-			GameObject.Find ("cptJoueur").GetComponent<compteJoueur> ().demarreCpt (); // cpt les joueurs
+			/*GameObject.Find ("cptJoueur").GetComponent<compteJoueur> ().demarreCpt (); // cpt les joueurs
 			// si il y a plus de bleu
 			if (compteJoueur.nbrJoueurEquipe1 > compteJoueur.nbrJoueurEquipe2+1){
 				// placement auto en rouge
@@ -51,7 +54,7 @@ public class placement : NetworkBehaviour {
 				// affichage message
 				if (isLocalPlayer)
 					StartCoroutine (afficheMess ()); 
-			}
+			}*/
 
 		}
 
@@ -73,8 +76,12 @@ public class placement : NetworkBehaviour {
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.red;
 
+			// couleur de l'icone minimap
+			child.GetChild(7).GetComponent<SpriteRenderer>().color = Color.red;
+
+
 			// verifie si le nbr de joueur est proportionné
-			GameObject.Find ("cptJoueur").GetComponent<compteJoueur> ().demarreCpt (); // cpt joueur
+			/*GameObject.Find ("cptJoueur").GetComponent<compteJoueur> ().demarreCpt (); // cpt joueur
 			// si il y a plus de rouge
 			if (compteJoueur.nbrJoueurEquipe2 > compteJoueur.nbrJoueurEquipe1+1){
 				// placement auto en bleu
@@ -82,7 +89,7 @@ public class placement : NetworkBehaviour {
 				// affiche message
 				if (isLocalPlayer)
 					StartCoroutine (afficheMess ()); 
-			}
+			}*/
 		}
 		Rpcclientremplacement (team);
 	}
@@ -108,9 +115,12 @@ public class placement : NetworkBehaviour {
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.blue;
 
+			// couleur de l'icone minimap
+			child.GetChild(7).GetComponent<SpriteRenderer>().color = Color.blue;
+
 
 			// verifie si le nbr de joueur est proportionné
-			GameObject.Find ("cptJoueur").GetComponent<compteJoueur> ().demarreCpt (); // cpt les joueurs
+			/*GameObject.Find ("cptJoueur").GetComponent<compteJoueur> ().demarreCpt (); // cpt les joueurs
 			// si il y a plus de bleu
 			if (compteJoueur.nbrJoueurEquipe1 > compteJoueur.nbrJoueurEquipe2+1){
 				// placement auto en rouge
@@ -118,7 +128,7 @@ public class placement : NetworkBehaviour {
 				// affichage message
 				if (isLocalPlayer)
 					StartCoroutine (afficheMess ()); 
-			}
+			}*/
 
 		}
 
@@ -141,8 +151,11 @@ public class placement : NetworkBehaviour {
 			Transform nomJoueur = nomJoueurtmp.transform.GetChild (1);
 			nomJoueur.gameObject.GetComponent<TextMesh> ().color = Color.red;
 
+			// couleur de l'icone minimap
+			child.GetChild(7).GetComponent<SpriteRenderer>().color = Color.red;
+
 			// verifie si le nbr de joueur est proportionné
-			GameObject.Find ("cptJoueur").GetComponent<compteJoueur> ().demarreCpt (); // cpt joueur
+			/*GameObject.Find ("cptJoueur").GetComponent<compteJoueur> ().demarreCpt (); // cpt joueur
 			Debug.Log("b : "+compteJoueur.nbrJoueurEquipe1+" r : "+compteJoueur.nbrJoueurEquipe2);
 			// si il y a plus de rouge
 			if (compteJoueur.nbrJoueurEquipe2 > compteJoueur.nbrJoueurEquipe1+1){
@@ -152,14 +165,13 @@ public class placement : NetworkBehaviour {
 				// affiche message
 				if (isLocalPlayer)
 					StartCoroutine (afficheMess ()); 
-			}
+			}*/
 		}
 	}
 
-	// Affiche message pendant 5 secondes
-	private IEnumerator afficheMess(){
+	/*private IEnumerator afficheMess(){
 		mess_chang.SetActive (true);
 		yield return new WaitForSeconds (1);
 		mess_chang.SetActive (false);
-	}
+	}*/
 }

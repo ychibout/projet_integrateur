@@ -21,12 +21,9 @@ public class menuReseau : NetworkBehaviour {
 		ChangementVaisseau();
 		if (player.team == 0) {
 			nm.StartServer ();
-			Debug.Log ("lancer");
 		} else if (player.team == 1) {
-			Debug.Log ("Client");
 			nm.StartClient ();
 		} else if (player.team == 2) {
-			Debug.Log ("Client");
 			nm.StartClient ();
 		}
 	}
